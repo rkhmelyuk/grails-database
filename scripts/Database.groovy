@@ -15,7 +15,7 @@ target(main: "Used to build database.") {
         }
         else if (action.equals("revert")) {
             String env = environment(argsMap)
-            def version = version(argsMap["params"][1])
+            def version = version(argsMap["params"][2])
             revert env, version
         }
         else if (action.equals("repatch")) {
@@ -231,7 +231,7 @@ Parameters:
     [environment] - can be dev or prod, required.
 
 Examples:
-    \$grails database apply all
+    \$grails database apply prod all
         - to apply prod all scripts from all versions (used to create database objects)
 
     \$grails database apply dev 0.1
