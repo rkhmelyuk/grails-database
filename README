@@ -1,12 +1,11 @@
-A script for Grails application to update, patch and rever the database.
+A script for Grails application to apply and revert a database patches.
 
 Setup
 -----
 
 Copy database.groovy script to the scripts/ directory of grails project.
-Recreate a patch directory like this
-Example patch directories structure:
-project/
+Recreate a patch directory structure like this:
+your-project/
     db/
 	patch/
 	    v0.1/
@@ -18,12 +17,14 @@ project/
 Environments
 ------------
 Supports two different environments:
- * dev - development and staging environment
+ * dev - development and staging environment,
  * prod - production environment
 
-To create a different patches for environments, just end the patch name with appropriate suffix, like:
+To create a different patches for environments, just end the patch name with an appropriate suffix, like:
  * 01_UserData_dev.sql and 01_UserData_revert_dev.sql
  * 01_UserData_prod.sql and 01_UserData_revert_prod.sql
+
+Such it is possible to have different data in dev and production databases.
 
 Command usage format:
 $ grails database <action> <args>
@@ -39,3 +40,6 @@ $ grails database apply all
 
 Recreate database completely:
 $ grails database repatch dev all
+
+Revert changes from version 0.2 and then re-apply them again:
+$ grails database repatch dev 0.2
